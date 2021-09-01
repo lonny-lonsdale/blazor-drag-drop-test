@@ -1,0 +1,17 @@
+﻿@inherits BaseComponent
+@using Microsoft.AspNetCore.Components;
+
+<CascadingValue Value="@this">
+    @ChildContent
+</CascadingValue>
+
+@code {
+    [CascadingParameter]
+    public Tree Tree { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public int Level { get; set; }
+}

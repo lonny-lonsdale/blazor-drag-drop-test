@@ -1,0 +1,16 @@
+﻿@page "/dragdrop"
+
+@inherits BaseComponent
+@using TestBlazorTwo.ViewModels
+
+@if (tree != null)
+{
+    @*<CascadingValue Value="template.template_data" IsFixed="true">*@
+    <div class="row">
+        @foreach (var tree in tree.Children.OrderBy(o => o.Order_Id))
+        {
+            <TestBlazorTwo.Components.ItemComponent AcceptedItem="AcceptedItem" OnDropped="OnDropped" Tree=@tree Level=0 @key=tree></TestBlazorTwo.Components.ItemComponent>
+        }
+    </div>
+    @*</CascadingValue>*@
+}

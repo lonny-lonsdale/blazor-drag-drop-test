@@ -1,0 +1,14 @@
+﻿@inherits BaseTemplateComponent
+
+<div>
+    <div class="row">
+        <div class="col-12">
+            <input id="@Tree.Id" placeholder="Type section" style="height:48px;" class="@Tree.Type " @bind-value="@Tree.Text" />
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public EventCallback OnDropped { get; set; }
+}
