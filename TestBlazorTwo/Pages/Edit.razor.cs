@@ -26,13 +26,14 @@ namespace TestBlazorTwo.Pages
             dropTargetTree = tree;
         }
 
+        public string DraggedItemText { get; set; } = "";
+        public string DropTargetItemText { get; set; } = "";
+
         public async Task OnDropped(Tree tree)
         {
-            // Get the tree item that has been dragged
-            var draggedItem = template.items.Where(i => i.Id == tree.Id).FirstOrDefault();
+            if (tree != null) { DraggedItemText = tree.Text ?? "Unknown"; }
 
-            // Get the item that has been dropped on
-            var dropTargetItem = template.items.Where(i => i.Id == dropTargetTree.Id).FirstOrDefault();
+            if (dropTargetTree != null) { DropTargetItemText = dropTargetTree.Text ?? "Unknown"; }
         }
 
         private async Task RefreshTree()

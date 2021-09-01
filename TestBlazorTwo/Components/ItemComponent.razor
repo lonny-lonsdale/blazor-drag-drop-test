@@ -1,23 +1,25 @@
 ﻿@inherits BaseComponent
 
 <CascadingValue Value="Tree">
-    <div class="row">
-        @if (Tree != null)
-        {
-            @if (Tree.Type == Model.ITEM_TYPES.SECTION)
+    <div class="row col-12">
+        <div class="col-11">
+            @if (Tree != null)
             {
-                <SectionComponent Level="Level"></SectionComponent>
-            }
-            else if (Tree.Type == Model.ITEM_TYPES.CATEGORY)
-            {
-                <CategoryComponent Level="Level"></CategoryComponent>
-            }
-            else if (Tree.Type == Model.ITEM_TYPES.TEXTSINGLE)
-            {
-                <TextSingleComponent Level="Level"></TextSingleComponent>
-            }
+                @if (Tree.Type == Model.ITEM_TYPES.SECTION)
+                {
+                    <SectionComponent Level="Level"></SectionComponent>
+                }
+                else if (Tree.Type == Model.ITEM_TYPES.CATEGORY)
+                {
+                    <CategoryComponent Level="Level"></CategoryComponent>
+                }
+                else if (Tree.Type == Model.ITEM_TYPES.TEXTSINGLE)
+                {
+                    <TextSingleComponent Level="Level"></TextSingleComponent>
+                }
 
-        }
+            }
+        </div>
     </div>
 
     @if (Tree.Children != null && Tree.Children.Any())
@@ -25,8 +27,8 @@
         if (Tree.Type == Model.ITEM_TYPES.SECTION)
         {
             <PageComponent>
-                <div class="col-lg-12 mb-1">
-                    <div class="level-@Level template-section">
+                <div class="col-12 mb-1">
+                    <div class="level-@Level">
                         <Dropzone Items="Tree.Children.ToList()" InstantReplace="false" TItem="Tree" Accepts="Accepts" OnItemDrop="@((args) => OnDropped.InvokeAsync(args))">
                             <ItemComponent Tree=@context Level="@(Level + 1)" @key=context></ItemComponent>
                         </Dropzone>
@@ -36,9 +38,9 @@
         }
         else
         {
-            <div class="col-lg-12 mb-1">
-                <div class="level-@Level template-section">
-                    <Dropzone Items="Tree.Children.ToList()" InstantReplace="false" TItem="Tree" Accepts="Accepts">
+            <div class="col-12 mb-1">
+                <div class="level-@Level">
+                    <Dropzone Items="Tree.Children.ToList()" InstantReplace="false" TItem="Tree" Accepts="Accepts" OnItemDrop="@((args) => OnDropped.InvokeAsync(args))">
                         <ItemComponent Tree=@context Level="@(Level + 1)" @key=context></ItemComponent>
                     </Dropzone>
                 </div>

@@ -1,4 +1,23 @@
-﻿<div class="row col-12">
+﻿<style>
+    .caret {
+        width: 0;
+        height: 0;
+        display: inline-block;
+        border: 8px solid transparent;
+    }
+
+    .caret.down {
+        border-top-color: black;
+        margin: 1%;
+    }
+
+    .caret.up {
+        border-bottom-color: black;
+        margin: 1%;
+    }
+</style>
+
+<div class="row col-12">
     <span @onclick=Toggle class="@CssClass"></span>
     @if (!Collapsed)
     {

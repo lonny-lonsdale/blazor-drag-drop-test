@@ -5,12 +5,22 @@
 
 @if (tree != null)
 {
-    @*<CascadingValue Value="template.template_data" IsFixed="true">*@
-    <div class="row">
+    <h3>Tests to try:</h3>
+    <ul>
+        <li>Try dragging Question A to Question B, C, D or the header for Section Y or X.  You will get the drop events and the [Dragged item] and [Drop target item] labels below will change</li>
+        <li>Try dragging Question Y1 on to Question Y2 (or onto Question X1 or X2) and you don;t get the drop events</li>
+    </ul>
+
+    <h3>Events</h3>
+    <ul>
+        <li>Dragged item: @(DraggedItemText)</li>
+        <li>Drop target item: @(DropTargetItemText)</li>
+    </ul>
+
+    <div class="row col-12">
         @foreach (var tree in tree.Children.OrderBy(o => o.Order_Id))
         {
             <TestBlazorTwo.Components.ItemComponent AcceptedItem="AcceptedItem" OnDropped="OnDropped" Tree=@tree Level=0 @key=tree></TestBlazorTwo.Components.ItemComponent>
         }
     </div>
-    @*</CascadingValue>*@
 }
