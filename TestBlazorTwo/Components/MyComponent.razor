@@ -1,0 +1,29 @@
+﻿<h3>MyComponent Level @(Level)</h3>
+
+@if (Level <= 2)
+{
+    <Dropzone Items="TheseItems" InstantReplace="true" TItem="string">
+        <MyComponent Level="@(Level + 1)"></MyComponent>
+    </Dropzone>
+}
+
+@code {
+    private int _Level = 0;
+
+    [Parameter]
+    public int Level { get => _Level; set => LoadLevel(value); }
+
+    private List<string> TheseItems = new List<string>();
+
+    private void LoadLevel(int level)
+    {
+        _Level = level;
+
+        TheseItems = new List<string>();
+
+        for (int i = 0; i < 3; i++)
+        {
+            TheseItems.Add($"Level {Level} - Item {i}");
+        }
+    }
+}
